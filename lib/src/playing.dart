@@ -94,7 +94,7 @@ class Playing {
   /// the parent playlist
   final ReadingPlaylist playlist;
 
-  Playing({
+  const Playing({
     required this.audio,
     required this.index,
     required this.hasNext,
@@ -143,7 +143,7 @@ class RealtimePlayingInfos {
     required this.loopMode,
     required this.isBuffering,
     this.isShuffling,
-  }) : duration = current?.audio.duration ?? Duration();
+  }) : duration = current?.audio.duration ?? const Duration();
 
   double get playingPercent => duration.inMilliseconds == 0
       ? 0

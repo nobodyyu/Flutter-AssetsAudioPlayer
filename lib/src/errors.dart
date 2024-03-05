@@ -1,7 +1,7 @@
 import 'assets_audio_player.dart';
 import 'player_group.dart';
 
-enum AssetsAudioPlayerErrorType { Network, Player }
+enum AssetsAudioPlayerErrorType { network, player }
 
 class ErrorHandler {
   final AssetsAudioPlayerError error;
@@ -26,9 +26,9 @@ typedef AssetsAudioPlayerGroupErrorHandler = Function(
 AssetsAudioPlayerErrorType parseAssetsAudioPlayerErrorType(String type) {
   switch (type) {
     case 'network':
-      return AssetsAudioPlayerErrorType.Network;
+      return AssetsAudioPlayerErrorType.network;
     default:
-      return AssetsAudioPlayerErrorType.Player;
+      return AssetsAudioPlayerErrorType.player;
   }
 }
 

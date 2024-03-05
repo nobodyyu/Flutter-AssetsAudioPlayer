@@ -18,7 +18,7 @@ class AudioWidget extends StatefulWidget {
   final Function()? onFinished;
   final Duration initialPosition;
 
-  AudioWidget({
+  const AudioWidget({
     Key? key,
     required this.audio,
     required this.child,
@@ -75,7 +75,7 @@ class AudioWidget extends StatefulWidget {
         super(key: key);
 
   @override
-  _AudioWidgetState createState() => _AudioWidgetState();
+  AudioWidgetState createState() => AudioWidgetState();
 
   AudioWidget copyWith({
     Widget? child,
@@ -102,7 +102,7 @@ class AudioWidget extends StatefulWidget {
   }
 }
 
-class _AudioWidgetState extends State<AudioWidget> {
+class AudioWidgetState extends State<AudioWidget> {
   late AssetsAudioPlayer _player;
   StreamSubscription? _currentPositionSubscription;
   StreamSubscription? _onReadyToPlaySubscription;

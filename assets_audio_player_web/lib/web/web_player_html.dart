@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:html' as html;
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'abstract_web_player.dart';
@@ -68,7 +69,8 @@ class WebPlayerHtml extends WebPlayer {
       final durationMs = (_audioElement?.duration ?? 0) * 1000;
       if (durationMs != _durationMs) {
         _durationMs = durationMs;
-        channel.invokeMethod(WebPlayer.methodCurrent, {'totalDurationMs': durationMs});
+        channel.invokeMethod(
+            WebPlayer.methodCurrent, {'totalDurationMs': durationMs});
       }
 
       if (_position != currentPosition) {
@@ -76,7 +78,7 @@ class WebPlayerHtml extends WebPlayer {
         final positionMs = currentPosition * 1000;
         channel.invokeMethod(WebPlayer.methodPosition, positionMs);
       }
-      return Future.delayed(Duration(milliseconds: 200)).then((value) {
+      return Future.delayed(const Duration(milliseconds: 200)).then((value) {
         return __listenPosition;
       });
     });
@@ -155,7 +157,8 @@ class WebPlayerHtml extends WebPlayer {
 
       if (durationMs != _durationMs) {
         _durationMs = durationMs;
-        channel.invokeMethod(WebPlayer.methodCurrent, {'totalDurationMs': durationMs});
+        channel.invokeMethod(
+            WebPlayer.methodCurrent, {'totalDurationMs': durationMs});
       }
 
       if (seek != null) {
@@ -174,7 +177,7 @@ class WebPlayerHtml extends WebPlayer {
 
   @override
   void seek({double? to}) {
-    print('Final Seeking To $to from ${_audioElement?.currentTime}');
+    debugPrint('Final Seeking To $to from ${_audioElement?.currentTime}');
     if (_audioElement != null && to != null) {
       /// Explainer on the `/1000`
       /// The value being sent down from the plugin
@@ -210,13 +213,13 @@ class WebPlayerHtml extends WebPlayer {
 
 class ForwardHandler {
   bool _isEnabled = false;
-  static final _timelapse = 300;
+  static const _timelapse = 300;
 
   void start(WebPlayerHtml player, double speed) async {
     _isEnabled = true;
     while (_isEnabled) {
       player.seekBy(by: speed * _timelapse);
-      await Future.delayed(Duration(milliseconds: _timelapse));
+      await Future.delayed(const Duration(milliseconds: _timelapse));
     }
   }
 

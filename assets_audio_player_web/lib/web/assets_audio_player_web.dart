@@ -26,7 +26,7 @@ class AssetsAudioPlayerWebPlugin {
       final newPlayer = _newPlayer(
           id,
           MethodChannel(
-            'assets_audio_player/' + id,
+            'assets_audio_player/$id',
             const StandardMethodCodec(),
             messenger,
           ));
